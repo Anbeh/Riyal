@@ -265,3 +265,12 @@ footer a {
     min-height: 150px;
   }
 }
+
+.toman-icon {
+  width: 17px;
+  height: 17px;
+  margin-right: 2px;
+  margin-left: 2px;
+  vertical-align: middle;
+  filter: brightness(0) invert(1);
+}
