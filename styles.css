@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Aviny'
+  font-family: 'Aviny';
 }
 
 body {
@@ -57,87 +57,83 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.card {
+.card, .crypto-card {
   position: relative;
   background: #1e1e1e;
-  border-radius: 15px;
-  padding: 15px;
+  border-radius: 12px;
+  padding: 18px 22px;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 2.3;
   overflow: hidden;
-}
-
-.card .icon {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 2rem;
-}
-
-.card-title-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-}
-
-.card .card-footer {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-}
-
-.card .price {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #fff;
+  min-height: 160px;
+  max-height: 220px;
 }
 
 .crypto-card {
-  position: relative;
   background: #2a2a2a;
-  border-radius: 15px;
-  padding: 15px;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
 }
 
+.card .icon,
 .crypto-card .crypto-icon {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 40px;
-  height: 40px;
+  top: 10px;
+  left: 10px;
+  font-size: 1.8rem;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-radius: 50%;
-  background: #333;
-  padding: 3px;
 }
 
+.card-title-group,
 .crypto-card .card-title-group {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 10px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
 }
 
-.crypto-card .card-footer {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
+.name,
+.nickname {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
 }
 
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Kalameh';
+  color: #fff;
+}
+
+.nickname {
+  font-size: 0.75rem;
+  font-family: 'Aviny';
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.card-footer,
+.crypto-card .card-footer {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.card .price,
 .crypto-card .price {
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #fff;
 }
 
@@ -159,6 +155,28 @@ body {
 .ad-container {
   max-width: 700px;
   margin: 0 auto 20px;
+}
+
+.ad-card-text {
+  grid-column: 1 / -1;
+  width: 100%;
+  background: #2d2d2d;
+  border-radius: 15px;
+  height: calc(100% * 0.8);
+  min-height: 130px;
+  max-width: 700px;
+  margin: 20px auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ad-text-center {
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: 'Kalameh';
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .ad-card {
@@ -237,46 +255,4 @@ footer a {
   .ad-card {
     min-height: 150px;
   }
-}
-
-.name,
-.nickname {
-  display: inline-block;
-  width: 100%;
-  text-align: right;
-}
-
-.name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #fff;
-  font-family: 'Kalameh';
-}
-
-.nickname {
-  font-size: 0.8rem;
-  color: #888;
-  font-family: 'Aviny';
-}
-
-.ad-card-text {
-  grid-column: 1 / -1;
-  width: 100%;
-  background: #2d2d2d;
-  border-radius: 15px;
-  height: calc(100% * 0.8);
-  min-height: 130px;
-  max-width: 700px;
-  margin: 20px auto 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ad-text-center {
-  font-size: 1.2rem;
-  color: #fff;
-  font-family: 'Kalameh';
-  text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
