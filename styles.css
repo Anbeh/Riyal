@@ -140,7 +140,7 @@ body {
 
 .card .price,
 .crypto-card .price {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
 }
@@ -180,8 +180,8 @@ body {
 }
 
 .ad-text-center {
-  font-size: 1.2rem;
-  color: #fff;
+  font-size: 1rem;
+  color: #989090;
   font-family: 'Kalameh';
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
@@ -249,7 +249,7 @@ footer a {
 
   .card .price,
   .crypto-card .price {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .crypto-icon {
