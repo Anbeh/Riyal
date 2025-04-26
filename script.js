@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const CURRENCY_API = 'https://anbeh.github.io/Riyal-api/data.json';
+const CURRENCY_API = '/data.json';
 const CRYPTO_API = 'https://api.cryptorank.io/v0/coins/prices?keys=bitcoin,ethereum,tether,ripple,bnb,solana,usdcoin,dogecoin,cardano,tron&currency=USD';
 
 const currencyMap = {
@@ -55,13 +55,15 @@ function createCurrencyCard(code, price) {
           <div class="nickname">${code}</div>
         </div>
       </div>
-      <div class="card-footer">
-        <div class="price">${formatNumber(price)}</div>
-      </div>
+        <div class="card-footer">
+          <div class="price">
+            ${formatNumber(price)}
+            <img src="toman.png" class="toman-icon" alt="تومان">
+          </div>
+        </div>
     </div>
   `;
 }
-
 
 
 async function loadCurrencyData() {
