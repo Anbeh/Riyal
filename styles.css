@@ -118,14 +118,14 @@ body {
 }
 
 .name {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   font-family: 'Kalameh';
   color: #fff;
 }
 
 .nickname {
-  font-size: 0.75rem;
+  font-size: 0.70rem;
   font-family: 'Aviny';
   color: #aaa;
   margin-top: 2px;
@@ -140,7 +140,7 @@ body {
 
 .card .price,
 .crypto-card .price {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
 }
