@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const CURRENCY_API = 'https://anbeh.github.io/Riyal-api/data.json';
+const CURRENCY_API = '/data.json';
 const CRYPTO_API = 'https://api.cryptorank.io/v0/coins/prices?keys=bitcoin,ethereum,tether,ripple,bnb,solana,usdcoin,dogecoin,cardano,tron&currency=USD';
 
 const currencyMap = {
@@ -24,17 +24,17 @@ const currencyMap = {
 };
 
 const icons = {
-  'USD': '🇺🇸',
-  'EUR': '🇪🇺',
-  'GBP': '🇬🇧',
-  'AED': '🇦🇪',
-  'TRY': '🇹🇷',
-  'CNY': '🇨🇳',
-  'CAD': '🇨🇦',
-  'CHF': '🇨🇭',
-  'RUB': '🇷🇺',
-  'IQD': '🇮🇶',
-  'JPY': '🇯🇵'
+  'USD': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1236-flag-of-united-states.png',
+  'EUR': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1084-flag-of-european-union.png',
+  'GBP': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1235-flag-of-great-britain.png',
+  'AED': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1234-flag-of-the-united-arab-emirates.png',
+  'TRY': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1228-flag-of-turkey.png',
+  'CNY': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1060-flag-of-china.png',
+  'CAD': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/7164-flag-of-canada.png',
+  'CHF': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1217-flag-of-switzerland.png',
+  'RUB': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1187-flag-of-russia.png',
+  'IQD': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1115-flag-of-iraq.png',
+  'JPY': 'https://www.emoji.co.uk/files/apple-emojis/flags-ios/1121-flag-of-japan.png'
 };
 
 function formatNumber(num) {
@@ -44,16 +44,16 @@ function formatNumber(num) {
 
 function createCurrencyCard(code, price) {
   const currency = currencyMap[code];
-  const icon = icons[code] || '💱';
+  const iconUrl = icons[code] || 'default.png';
 
   return `
     <div class="card">
       <div class="card-header">
+        <img class="crypto-icon" src="${iconUrl}" alt="${code}">
         <div class="card-title-group">
           <div class="name">${currency.name}</div>
           <div class="nickname">${code}</div>
         </div>
-        <div class="icon">${icon}</div>
       </div>
       <div class="card-footer">
         <div class="price">${formatNumber(price)}</div>
@@ -61,6 +61,8 @@ function createCurrencyCard(code, price) {
     </div>
   `;
 }
+
+
 
 async function loadCurrencyData() {
   try {
