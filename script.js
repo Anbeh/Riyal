@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const CURRENCY_API = '/data.json';
+const CURRENCY_API = 'https://anbeh.github.io/Riyal-api/data.json';
 const CRYPTO_API = 'https://api.cryptorank.io/v0/coins/prices?keys=bitcoin,ethereum,tether,ripple,bnb,solana,usdcoin,dogecoin,cardano,tron&currency=USD';
 
 const currencyMap = {
