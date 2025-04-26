@@ -87,7 +87,7 @@ async function loadCurrencyData() {
       hour12: false
     };
     document.getElementById('modified-time').textContent = 
-      `Last update: ${new Intl.DateTimeFormat('en-US', options).format(date)}`;
+      `${new Intl.DateTimeFormat('en-US', options).format(date)}`;
     
   } catch (err) {
     document.getElementById('currency-grid').innerHTML = `
