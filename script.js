@@ -84,7 +84,10 @@ async function loadCurrencyData() {
     const cryptoGrid = document.getElementById('crypto-grid');
     cryptoGrid.innerHTML = data.cryptos.map(createCryptoCard).join('');
 
-    const date = new Date(data.checked_at);
+    // تبدیل رشته تاریخ به فرمت قابل فهم برای Date
+    const checkedAtString = data.checked_at.replace(' ', 'T'); // "2025-04-29T02:58:22"
+    const date = new Date(checkedAtString);
+
     const options = { 
       year: 'numeric', 
       month: 'short', 
@@ -99,7 +102,7 @@ async function loadCurrencyData() {
   } catch (err) {
     console.error('Error loading data:', err);
     document.getElementById('currency-grid').innerHTML = `
-      <div style="font-family:"Kalameh"; 3color: gray; text-align: center; grid-column: 1/-1">
+      <div style="font-family:'Kalameh'; color: gray; text-align: center; grid-column: 1/-1">
         خطا در دریافت داده‌ها
       </div>`;
   }
