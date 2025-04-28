@@ -50,20 +50,20 @@ function createCryptoCard(crypto) {
 }
 
 function createGoldCard(gold) {
-  const isDollar = gold.title === "انس طلا";
   const formattedPrice = formatNumber(gold.price_toman);
 
   return `
     <div class="card gold-card">
       <div class="card-header">
-        <img class="crypto-icon" src="${'gold.png'}" alt="${gold.title}">
+        <img class="crypto-icon" src="gold.png" alt="${gold.title}">
         <div class="card-title-group">
           <div class="name">${gold.title}</div>
         </div>
       </div>
       <div class="card-footer">
         <div class="price">
-          ${isDollar ? '$' + formattedPrice : formattedPrice + '<img src="toman.png" class="toman-icon" alt="تومان">'}
+          ${formattedPrice}
+          <img src="toman.png" class="toman-icon" alt="تومان">
         </div>
       </div>
     </div>
