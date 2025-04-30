@@ -1,22 +1,26 @@
 @font-face {
   font-family: 'Aviny';
-  src: url('Wolf-Sans-Regular.ttf') format('truetype');
+  src: url('fonts/Wolf-Sans-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Kalameh';
-  src: url('kalameh.ttf') format('truetype');
+  src: url('fonts/kalameh.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'YekanBakh';
-  src: url('YekanBakh-Bold.ttf') format('truetype');
+  src: url('fonts/YekanBakh-Bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+:root {
+  --card-gap: 12px;
 }
 
 * {
@@ -74,7 +78,11 @@ body {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: var(--card-gap);
+}
+
+#gold-grid {
+  margin-bottom: var(--card-gap);
 }
 
 .card, .crypto-card {
@@ -279,4 +287,8 @@ footer a {
   margin-left: 2px;
   vertical-align: middle;
   filter: brightness(0) invert(1);
+}
+
+.hide-gheymat {
+  display: none !important;
 }

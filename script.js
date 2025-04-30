@@ -26,20 +26,36 @@ function createCurrencyCard(currency) {
       <div class="card-footer">
         <div class="price">
           ${formatNumber(currency.price)}
-          <img src="toman.png" class="toman-icon" alt="تومان">
+          <img src="icons/toman.png" class="toman-icon" alt="تومان">
         </div>
       </div>
     </div>
   `;
 }
 
+const cryptoIconMap = {
+  "Bitcoin": "btc.png",
+  "Ethereum": "eth.png",
+  "Tether": "usdt.png",
+  "Ripple": "xrp.png",
+  "Binance Coin": "bnb.png",
+  "Solana": "sol.png",
+  "USD Coin": "usdc.png",
+  "Dogecoin": "doge.png",
+  "Cardano": "ada.png",
+  "TRON": "trx.png"
+};
+
 function createCryptoCard(crypto) {
+  const iconPath = `icons/${crypto.name.toLowerCase().replace(/\s/g, '-')}.png`;
+
   return `
     <div class="card crypto-card">
       <div class="card-header">
-        <img class="crypto-icon" src="${crypto.icon || 'default.png'}" alt="${crypto.name}">
+        <img class="crypto-icon" src="${iconPath}" alt="${crypto.name}">
         <div class="card-title-group">
-          <div class="name">${crypto.name}</div>
+          <div class="name">${crypto.fullname}</div>
+          <div class="nickname">${crypto.name}</div>
         </div>
       </div>
       <div class="card-footer">
@@ -50,12 +66,11 @@ function createCryptoCard(crypto) {
 }
 
 function createGoldCard(gold) {
-  const formattedPrice = formatNumber(gold.price_toman);
-
+  const formattedPrice = formatNumber(gold.price_toman || gold.price);
   return `
     <div class="card gold-card">
       <div class="card-header">
-        <img class="crypto-icon" src="gold.png" alt="${gold.title}">
+        <img class="crypto-icon" src="icons/gold-bar.png" alt="${gold.title}">
         <div class="card-title-group">
           <div class="name">${gold.title}</div>
         </div>
@@ -63,7 +78,30 @@ function createGoldCard(gold) {
       <div class="card-footer">
         <div class="price">
           ${formattedPrice}
-          <img src="toman.png" class="toman-icon" alt="تومان">
+          <img src="icons/toman.png" class="toman-icon" alt="تومان">
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function createGoldCoinCard(coin) {
+  const formattedPrice = formatNumber(coin.price_toman || coin.price);
+  const isGram = coin.title === "سکه گرمی";
+  const hideClass = isGram ? "hide-gheymat" : "";
+
+  return `
+    <div class="card gold-card ${hideClass}">
+      <div class="card-header">
+        <img class="crypto-icon" src="icons/gold-coin.png" alt="${coin.title}">
+        <div class="card-title-group">
+          <div class="name">${coin.title}</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="price">
+          ${formattedPrice}
+          <img src="icons/toman.png" class="toman-icon" alt="تومان">
         </div>
       </div>
     </div>
@@ -75,30 +113,42 @@ async function loadCurrencyData() {
     const res = await fetch(CURRENCY_API);
     const data = await res.json();
 
+    // ارزها
     const currencyGrid = document.getElementById('currency-grid');
     currencyGrid.innerHTML = data.currency_rates.map(createCurrencyCard).join('');
 
+    // طلا
+    const goldArray = Object.entries(data.gold_prices).map(([title, price]) => ({
+      title,
+      price_toman: price
+    }));
     const goldGrid = document.getElementById('gold-grid');
-    goldGrid.innerHTML = data.gold_prices.map(createGoldCard).join('');
+    goldGrid.innerHTML = goldArray.map(createGoldCard).join('');
 
+    // سکه‌ها
+    const goldCoinGrid = document.getElementById('gold-coin-grid');
+    if (goldCoinGrid) {
+      goldCoinGrid.innerHTML = data.gold_coins.map(createGoldCoinCard).join('');
+    }
+
+    // رمزارزها
     const cryptoGrid = document.getElementById('crypto-grid');
     cryptoGrid.innerHTML = data.cryptos.map(createCryptoCard).join('');
 
-    // تبدیل رشته تاریخ به فرمت قابل فهم برای Date
-    const checkedAtString = data.checked_at.replace(' ', 'T'); // "2025-04-29T02:58:22"
+    // زمان آخرین به‌روزرسانی
+    const checkedAtString = data.checked_at.replace(' ', 'T');
     const date = new Date(checkedAtString);
-
-    const options = { 
-      year: 'numeric', 
-      month: 'short', 
+    const options = {
+      year: 'numeric',
+      month: 'short',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
       hour12: false
     };
-    document.getElementById('modified-time').textContent = 
+    document.getElementById('modified-time').textContent =
       `${new Intl.DateTimeFormat('en-US', options).format(date)}`;
-    
+
   } catch (err) {
     console.error('Error loading data:', err);
     document.getElementById('currency-grid').innerHTML = `
@@ -108,9 +158,8 @@ async function loadCurrencyData() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   loadCurrencyData();
-  
   setInterval(() => {
     loadCurrencyData();
   }, 60000);

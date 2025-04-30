@@ -4,9 +4,9 @@ const ASSETS = [
   '/index.html',
   '/styles.css',
   '/script.js',
-  '/logo.png',
-  '/icon-192x192.png',
-  '/icon-512x512.png',
+  'icons/logo.png',
+  'icons/icon-192x192.png',
+  'icons/icon-512x512.png',
   '/manifest.json'
 ];
 
